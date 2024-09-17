@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea los juegos al principio del contenedor */
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
+    padding: 20px; /* Un pequeño padding para evitar que queden pegados al borde */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    grid-gap: 20px;
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    height: 100%; /* Ocupa el 100% del alto disponible */
+}
+
+.placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    height: 100%; /* Ajusta para que cada placeholder ocupe el espacio vertical */
+    min-height: 200px; /* Un mínimo para evitar que colapse si hay poco contenido */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

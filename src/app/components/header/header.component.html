@@ -1,11 +1,14 @@
 <header>
     <nav>
       <ul>
-        <li><img class="icon-photo" src="icon.png" alt="Your Photo"></li>
-        <li><a routerLink="home" routerLinkActive="active-route">Home</a></li>
-        <li><a routerLink="/login" routerLinkActive="active-route">Login</a></li>
-        <li><a routerLink="/registro" routerLinkActive="active-route">Registro</a></li>
+        <li><img class="icon-photo" src="icon.png" alt="Icono"></li>
+        <li><a routerLink="home" routerLinkActive="active-route">Inicio</a></li>
         <li><a routerLink="/quien-soy" routerLinkActive="active-route">Quién soy</a></li>
+        <li><a routerLink="/login" routerLinkActive="active-route" *ngIf="!isLoggedIn">Iniciar sesión / Registrarse</a></li>
+        <li><a *ngIf="isLoggedIn">Bienvenido {{ userEmail }}</a></li> 
+        <li><a (click)="logout()" routerLink="/login" routerLinkActive="active-route" *ngIf="isLoggedIn">Cerrar Sesión</a></li>
+
+
 
 
       </ul>

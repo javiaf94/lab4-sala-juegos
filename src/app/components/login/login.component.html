@@ -1,43 +1,64 @@
-<div class="wrapper">
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="#">
-                <h1>Create Account</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registration</span>
-                <input type="text" placeholder="Name"/>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button>Sign Up</button>
-            </form>
+ <div class="wrapper"> 
+    
+    <!-- Signup Form -->
+    <div class="container" [ngClass]="{'right-panel-active': isSignUp}">
+      <div class="form-container sign-up-container">
+        <form #signupForm="ngForm" (ngSubmit)="onSignUp()">
+          <h1>Crear cuenta</h1>
+          <span>Registrese con su dirección de email</span>
+          <input type="email" placeholder="Email" [(ngModel)]="new_user.email" name="new_email" required email #emailInput="ngModel"/>
+          <span *ngIf="emailInput?.invalid && emailInput?.touched" class="error-message">
+            <span *ngIf="emailInput?.errors?.['required']">El email es obligatorio</span>
+            <span *ngIf="emailInput?.errors?.['email']">Por favor ingrese un email válido</span>
+          </span>
+
+        <input type="password" placeholder="Contraseña" [(ngModel)]="new_user.password" name="new_password" required #passwordInput="ngModel"/>
+        <span *ngIf="passwordInput?.invalid && passwordInput?.touched" class="error-message">
+          <span *ngIf="passwordInput?.errors?.['required']">La contraseña es obligatoria</span>
+          <span *ngIf="passwordInput?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</span>
+        </span>
+
+        <button type="submit" [disabled]="signupForm.invalid">Registrarse</button>
+      </form>
+      </div>
+      <div class="form-container sign-in-container">
+
+        <!-- Login Form -->
+        <form #loginForm="ngForm" novalidate (ngSubmit)="onLogIn()">
+          
+          <h1>Inicio de sesión</h1>
+          
+          <input type="email" placeholder="Email" [(ngModel)]="user.email" #loginEmailInput="ngModel" name="email" required email/>
+          <!-- Validation Messages for Email -->
+          <span *ngIf="loginEmailInput?.invalid && loginEmailInput?.touched">
+            <span *ngIf="loginEmailInput?.errors?.['required']" class="error-message">La contraseña es obligatoria</span>
+            <span *ngIf="loginEmailInput?.errors?.['email'] && !loginEmailInput?.errors?.['required']" class="error-message">Ingrese un email valido</span>
+          </span>
+
+          <input type="password" placeholder="Contraseña" [(ngModel)]="user.password" #loginPasswordInput="ngModel" name="password" required minlength="6"/>
+          <!-- Validation Messages for Password -->
+          <span *ngIf="loginPasswordInput?.invalid && loginPasswordInput?.touched">
+            <span *ngIf="loginPasswordInput?.errors?.['required']" class="error-message">La contraseña es obligatoria</span>
+            <span *ngIf="loginPasswordInput?.errors?.['minlength']" class="error-message">La contraseña debe tener al menos 6 caracteres</span>
+          </span>
+
+          <button type="submit" [disabled]="loginForm.invalid">Acceder</button>
+          <button class="margin" (click)="llenarUsuario()" type="button">Acceso rápido</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Bienvenido de vuelta!</h1>
+            <p>Para mantenerse conectado inicie sesión con una cuenta existente</p>
+            <button class="ghost" (click)="toggleForm(false)">Iniciar sesión</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hola!</h1>
+            <p>Ingrese sus datos personales para crear su cuenta</p>
+            <button class="ghost" (click)="toggleForm(true)">Registrarse</button>
+          </div>
         </div>
-        <div class="form-container sign-in-container">
-            <form (ngSubmit)="onSubmit()">
-                <h1>Inicio de sesión</h1>
-                <input type="email" placeholder="Email" [(ngModel)]="user.email" name="email" />
-                <input type="password" placeholder="Contraseña" [(ngModel)]="user.password" name="password" />
-                <a href="#">Olvidaste tu contraseña?</a>
-                <button type="submit">Acceder</button>
-                <button class="margin" (click)="llenarUsuario()" type="button">Acceso rápido</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Hola!</h1>
-                    <p>Ingrese sus datos pesonales para crear su cuenta</p>
-                    <button class="ghost" id="signUp">Registrarse</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+  </div> 

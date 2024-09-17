@@ -1,5 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
 	box-sizing: border-box;
@@ -56,10 +55,12 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 	width: 180px;
+	margin-top: 8px;
+
 }
 
 button.margin{
-	margin-top: 5px;
+	margin-top: 8px;
 }
 
 button:active {
@@ -101,9 +102,9 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+	width: 1000px;
 	max-width: 100%;
-	min-height: 480px;
+	min-height: 700px;
 }
 
 .form-container {
@@ -262,6 +263,19 @@ footer a {
     align-items: center;
     height: 100vh; /* O cualquier altura que necesites */
     margin: 0;
+    background-color: #f4f4f9;
+
   }
 
-  
+  button:disabled {
+	pointer-events: none; /* Disable pointer events to prevent any interaction */
+	background-color: #ccc; /* Optional: Change button color to indicate it's disabled */
+	cursor: not-allowed; /* Optional: Change the cursor to indicate it's disabled */
+	box-shadow: none; /* Remove any shadow effect */
+	transform: none; /* Remove the press effect (transform scale) */
+  }
+
+  .error-message {
+	color: red;
+	font-size: 0.9rem; /* Ajusta el tamaño de fuente si lo deseas */
+  }

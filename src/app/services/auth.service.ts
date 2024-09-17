@@ -1,16 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, User, onAuthStateChanged, authState } from '@angular/fire/auth';
 import { from, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: Auth) {}
+
+
+  constructor(private auth: Auth) {
+
+   }
+
 
   // Login con email y password
   login(email:string, password:string){
-    return signInWithEmailAndPassword(this.auth, email, password);
+    return signInWithEmailAndPassword(this.auth, email, password)
+  }
+
+  register(email:string, password:string){
+    return createUserWithEmailAndPassword(this.auth, email, password)
   }
 
   //Logout
@@ -18,8 +28,8 @@ export class AuthService {
     return signOut(this.auth);
   }
 
-  // Obtener el usuario autenticado
-  get currentUser(): User | null {
-    return this.auth.currentUser;
+  isLoggedIn(): Observable<any | null> {
+    return authState(this.auth); // authState function that emits user or null
   }
+
 }
