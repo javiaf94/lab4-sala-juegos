@@ -4,16 +4,18 @@ nav a.active-route {
 }
 
 header {
-  background-color: #ffffff; /* Blanco o cualquier color suave */
+  /*background-color: #ffffff; /* Blanco o cualquier color suave */
   padding: 0 30px; /* Margen horizontal */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle elegancia */
-  position: sticky;
   top: 0;
+  position: sticky;
   z-index: 1000;
   display: flex;
   justify-content: flex-start;
   align-items: center; /* Centra verticalmente los elementos dentro del header */
   min-height: 80px; /* Define una altura mínima para el header */
+  background-color: rgb(226, 226, 226);
+  border-radius: 15px; /* Suaviza los bordes */
 }
 
 /* Estilos para el nav */

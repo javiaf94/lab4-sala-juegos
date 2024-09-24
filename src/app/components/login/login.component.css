@@ -2,6 +2,7 @@
 
 * {
 	box-sizing: border-box;
+
 }
 
 body {
@@ -264,7 +265,7 @@ footer a {
     height: 100vh; /* O cualquier altura que necesites */
     margin: 0;
     background-color: #f4f4f9;
-
+    background-image: url('../../../../public/fondo4.jpg');
   }
 
   button:disabled {

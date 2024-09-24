@@ -1,0 +1,153 @@
+.chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .chat-button button {
+    background-color: #007bff; /* Color del botón */
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .chat-window {
+    position: fixed;
+    bottom: 80px; /* Ubicado justo encima del botón */
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 500px; /* Aumenta el ancho según tus preferencias */
+    max-height: calc(100vh - 100px); /* Altura máxima ajustada para ocupar el espacio disponible */
+    min-height: 500px; /* Altura mínima para asegurarse de que sea visible */
+    display: flex; /* Usar flexbox para la alineación */
+    flex-direction: column; /* Alinear los elementos en columna */
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.message-container {
+    max-height: 500px; /* Altura del área de mensajes */
+    overflow-y: auto; /* Scroll para mensajes */
+    flex-grow: 1; /* Permite que este contenedor crezca y ocupe el espacio restante */
+
+}
+
+.message-list {
+    list-style-type: none; /* Quita los puntos de la lista */
+    padding: 0; /* Quita el padding por defecto */
+    margin: 0; /* Quita el margin por defecto */
+}
+
+.message-item {
+    padding: 10px 10px;  /* Espaciado entre mensajes */
+    width: 250px;
+    display: flex; /* Usar flexbox para el contenido interno */
+    flex-direction: column; /* Mantener la dirección vertical */
+    align-items: flex-start; /* Alinear el contenido al final (derecha) */
+    margin-right: auto; /* Esto empuja el elemento hacia la derecha */
+}
+
+.message-item-userLogged {
+    padding: 10px 10px;  /* Espaciado entre mensajes */
+    width: 250px;
+    display: flex; /* Usar flexbox para el contenido interno */
+    flex-direction: column; /* Mantener la dirección vertical */
+    align-items: flex-end; /* Alinear el contenido al final (derecha) */
+    margin-left: auto; /* Esto empuja el elemento hacia la derecha */
+}
+
+.message-header {
+    display: flex;
+    /*justify-content: space-between; /* Espaciado entre usuario y fecha */
+    font-size: 0.9em; /* Tamaño de fuente para el encabezado */
+    margin-bottom: 5px; /* Espacio entre el encabezado y el recuadro del mensaje */
+}
+
+.message-date {
+    color: #aaa; /* Color más claro para la fecha */
+    margin-left: 5px;
+}
+
+.message-box {
+    background-color: #f1f1f1; /* Color de fondo para el mensaje */
+    border-radius: 5px;
+    padding: 10px;
+    /* Ancho del cuadro del mensaje */
+    max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+    word-wrap: break-word; /* Permite que las palabras largas se dividan */
+    
+}
+
+.message-box-userLogged {
+    background-color: #4694ee; /* Color de fondo para el mensaje */
+    border-radius: 5px;
+    padding: 10px;
+    /* Ancho del cuadro del mensaje */
+    max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+    word-wrap: break-word; /* Permite que las palabras largas se dividan */
+    
+}
+
+.message-box p {
+    margin: 0; /* Espaciado del texto del mensaje */
+    white-space: normal;
+    color: #333333 ;
+
+}
+
+.message-box-userLogged p {
+    margin: 0; /* Espaciado del texto del mensaje */
+    white-space: normal;
+    color: #ffffff;
+}
+
+.input-container {
+    display: flex; /* Usar flexbox para alinear los elementos */
+    margin-top: 10px; /* Espaciado superior para separar del área de mensajes */
+}
+
+.message-input {
+    flex: 0 0 85%; /* Ocupa el 80% del ancho */
+    padding: 10px;
+    margin-right: 5px; /* Espacio entre el input y el botón */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+
+.chat-window button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-window button:hover {
+    background-color: #0056b3;
+}
+
+
+.send-button {
+    flex: 0 0 10%; /* Ocupa el 20% del ancho */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}

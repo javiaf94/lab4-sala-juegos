@@ -1,0 +1,26 @@
+<div class="chat-button">
+    <button (click)="AbrirChat()" *ngIf="isLoggedIn">Chat</button>
+  </div>
+  
+<div class="chat-window" *ngIf="isChatOpen && isLoggedIn">
+    <div class="message-container">
+        <ul class="message-list">
+            <li *ngFor="let msg of msgCollection" [ngClass]="{'message-item-userLogged': msg.user == this.userEmail, 'message-item': msg.user != this.userEmail }">
+                <div class="message-header">
+                    <strong>{{ msg.user }}</strong>
+                    <span class="message-date">{{ (msg.fecha.seconds * 1000) | date:'dd/MM&nbsp;hh:mm' }}</span>
+                </div>
+                <div [ngClass]="{'message-box-userLogged': msg.user == this.userEmail, 'message-box': msg.user != this.userEmail }">
+                    <p>{{ msg.mensaje }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="input-container">
+        <input type="text" placeholder="Escribe tu mensaje aquí..." [(ngModel)]="msg" (keydown.enter)="EnviarMensaje()" class="message-input">
+        <button (click)="EnviarMensaje()" class="send-button">></button>
+        
+    </div>
+
+</div>
+

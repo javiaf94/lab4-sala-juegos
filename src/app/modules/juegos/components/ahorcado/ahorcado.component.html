@@ -1,0 +1,47 @@
+<div class="wrapper">
+    
+        <div class="container">
+            <h2>Ahorcado</h2>
+            <h3 class="letras">{{ letras }}</h3>
+            
+        
+            <div class="teclado">
+                <h3>Selecciona una letra:</h3>
+                <div class="fila">
+                    <button *ngFor="let letra of letrasAlfabeto.slice(0, 13)" (click)="seleccionarLetra(letra)" [disabled]="letrasSeleccionadas.includes(letra)">{{ letra }}</button>
+                </div>
+                <div class="fila">
+                    <button *ngFor="let letra of letrasAlfabeto.slice(13)" (click)="seleccionarLetra(letra)" [disabled]="letrasSeleccionadas.includes(letra)">{{ letra }}</button>
+                </div>
+            </div>
+            <div class="pantalla">
+                <h4 class="intentos">Intentos restantes: {{ intentos }}</h4>
+            </div>
+            <div class="game-container">       
+                <!-- <div class="video-container">
+                    <video id="yesVideo" class="response-video" muted>
+                        <source src="yes3.mp4" type="video/mp4">
+                        Tu navegador no soporta el video.
+                    </video>
+                    <video id="noVideo" class="response-video" muted>
+                        <source src="no2.mp4" type="video/mp4">
+                        Tu navegador no soporta el video.
+                    </video>                    
+                </div> -->
+                <img [src]="'./ahorcado' + (7 - intentos) + '.png'" *ngIf="intentos <= 6" />
+            </div>
+            
+            <div class="modal" *ngIf="isJuegoTerminado()">
+                <div class="modal-content">
+                    <h4 *ngIf="intentos <= 0">¡Perdiste! La palabra era {{ palabra }}.</h4>
+                    <h4 *ngIf="isPalabraCompletada()">¡Ganaste!</h4>
+                    <button (click)="volverAJugar()" class="modal-button">Volver a jugar</button>
+                    <button (click)="volverAlInicio()" class="modal-button">Volver al inicio</button>
+                </div>
+            </div>
+            <!-- <div *ngIf="isJuegoTerminado()" class="resultado">
+                <h4 *ngIf="intentos <= 0">¡Perdiste! La palabra era {{ palabra }}.</h4>
+                <h4 *ngIf="isPalabraCompletada()">¡Ganaste!</h4>
+            </div> -->
+        </div>
+</div>

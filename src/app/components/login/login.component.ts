@@ -22,6 +22,7 @@ export class LoginComponent {
   user: Usuario = new Usuario("" ,"");
   new_user: Usuario = new Usuario ("","");
   user_precargado: Usuario = new Usuario("test@test.com", "test123");
+
   
   isSignUp: boolean = false;
 
@@ -109,6 +110,5 @@ export class LoginComponent {
     this.user.email = this.user_precargado.email;
     this.user.password = this.user_precargado.password;
   }
-
 
 }

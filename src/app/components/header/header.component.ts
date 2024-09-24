@@ -18,7 +18,7 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent {
 
   isLoggedIn = false;
-  userEmail: string | null = null;
+  userEmail!: string;
 
 
   constructor(public auth: AuthService){

@@ -12,7 +12,7 @@
             <span *ngIf="emailInput?.errors?.['email']">Por favor ingrese un email válido</span>
           </span>
 
-        <input type="password" placeholder="Contraseña" [(ngModel)]="new_user.password" name="new_password" required #passwordInput="ngModel"/>
+        <input type="password" placeholder="Contraseña" [(ngModel)]="new_user.password" name="new_password" required minlength="6" #passwordInput="ngModel"/>
         <span *ngIf="passwordInput?.invalid && passwordInput?.touched" class="error-message">
           <span *ngIf="passwordInput?.errors?.['required']">La contraseña es obligatoria</span>
           <span *ngIf="passwordInput?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</span>
@@ -36,7 +36,6 @@
           </span>
 
           <input type="password" placeholder="Contraseña" [(ngModel)]="user.password" #loginPasswordInput="ngModel" name="password" required minlength="6"/>
-          <!-- Validation Messages for Password -->
           <span *ngIf="loginPasswordInput?.invalid && loginPasswordInput?.touched">
             <span *ngIf="loginPasswordInput?.errors?.['required']" class="error-message">La contraseña es obligatoria</span>
             <span *ngIf="loginPasswordInput?.errors?.['minlength']" class="error-message">La contraseña debe tener al menos 6 caracteres</span>
@@ -44,6 +43,7 @@
 
           <button type="submit" [disabled]="loginForm.invalid">Acceder</button>
           <button class="margin" (click)="llenarUsuario()" type="button">Acceso rápido</button>
+
         </form>
       </div>
       <div class="overlay-container">

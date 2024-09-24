@@ -2,10 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Alinea los juegos al principio del contenedor */
-    height: 100vh;
+    height: 85vh;
     margin: 0;
     background-color: #f4f4f9;
     padding: 20px; /* Un pequeño padding para evitar que queden pegados al borde */
+    background-image: url('../../../../public/fondo4.jpg');
+
 }
 
 .grid-container {
@@ -25,4 +27,67 @@
     min-height: 200px; /* Un mínimo para evitar que colapse si hay poco contenido */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-1 {
+    display: flex;
+    justify-content: flex-end; /* Centra el contenido del texto en el espacio libre */
+    align-items: center;
+    background-color: #f0eded;
+    height: 100%;
+    min-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-image: url('../../../../public/descarga.png');
+    background-size: 40% 100%; /* Imagen ocupa el 40% del ancho */
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 45%;
+    cursor: pointer; /* Deja espacio para la imagen de fondo */
+}
+
+.description {
+    padding: 20px;
+    font-size: 20px;
+    color: #333;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+}
+
+.placeholder-2 {
+    display: flex;
+    justify-content: flex-end; /* Centra el contenido del texto en el espacio libre */
+    align-items: center;
+    background-color: #f0eded;
+    height: 100%;
+    min-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-image: url('../../../../public/mayor-o-menor.jpg');
+    background-size: 40% 100%; /* Imagen ocupa el 40% del ancho */
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 45%;
+    cursor: pointer; /* Deja espacio para la imagen de fondo */
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Asegura que esté encima de todo */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: larger;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

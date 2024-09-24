@@ -1,0 +1,31 @@
+<div class="wrapper">
+
+<div class="game-container">
+    <h2>Mayor o Menor</h2>
+    <img [src]="'./' + currentCard?.number +  '-' + currentCard?.suit +'.png'" />
+
+    
+    <div class="buttons" *ngIf="!gameEnded">
+      <button (click)="guess('mayor')">Mayor</button>
+      <button (click)="guess('menor')">Menor</button>
+    </div>
+    
+    <h4 *ngIf="!gameEnded">Puntaje: {{ score }}</h4>
+    <h4 *ngIf="!gameEnded">Intentos: {{ attemptsLeft }}</h4>
+
+
+    <div class="modal" *ngIf="gameEnded">
+        <div class="modal-content">
+            <h4>Agotaste tus intentos</h4>            
+            <h4>Puntaje: {{ score }}</h4>
+
+            <button *ngIf="gameEnded" (click)="resetGame()" class="modal-button">Jugar de nuevo</button>
+            <button (click)="volverAlInicio()" class="modal-button">Volver al inicio</button>
+        </div>
+    </div>
+
+   
+  
+  </div>
+
+</div>

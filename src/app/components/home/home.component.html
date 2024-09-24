@@ -1,8 +1,30 @@
 <div class="wrapper">
-    <div class="grid-container">
-      <div class="placeholder">Juego 1</div>
-      <div class="placeholder">Juego 2</div>
-      <div class="placeholder">Juego 3</div>
-      <div class="placeholder">Juego 4</div>
+
+  <div class="grid-container" [ngClass]="{ 'disabled': !isLoggedIn }">
+    
+    <div class="placeholder-1" (click)="isLoggedIn ? rutear('/juegos/ahorcado') : null">
+      <div class="description">
+        <h2>Ahorcado</h2>
+        <p>Descubre la palabra oculta antes de agotar los intentos!</p>
+      </div>
+    </div>
+
+    <div class="placeholder-2" (click)="isLoggedIn ? rutear('/juegos/mayormenor') : null">
+      <div class="description">
+        <h2>Mayor o Menor</h2>
+        <p>Calcula y arriesga el contenido de la siguiente carta y compite por el mayor puntaje!</p>
+      </div>
+    </div>
+
+    <div class="placeholder" (click)="isLoggedIn ? rutear('/juegos/preguntados') : null">Preguntados</div>
+    <div class="placeholder" (click)="isLoggedIn ? rutear('/juegos/juego4') : null">Juego 4</div>
+
+  </div>
+
+  <!-- Mostrar mensaje si no está logueado -->
+  <div class="modal"*ngIf="!isLoggedIn" >
+    <div class="modal-content">
+        <h4> Debes iniciar sesión para jugar a los juegos.</h4>
     </div>
   </div>
+</div>
