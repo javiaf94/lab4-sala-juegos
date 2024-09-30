@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <div class="game-container">
+      <h2>Preguntados Pokemon</h2>
+  
+      <!-- Imagen del Pokémon aleatorio -->
+      <img [src]="randomPokemon?.image" class="imagen-agrandada" *ngIf="randomPokemon" />
+
+  
+      <!-- Botones para elegir el Pokémon -->
+      <div class="buttons" *ngIf="options.length > 0">
+        <button *ngFor="let option of options" (click)="handleGuess(option)">
+          {{ option }}
+        </button>
+      </div>
+
+        <!-- Mostrar intentos y aciertos -->
+        <h4 *ngIf="!gameEnded">Intentos restantes: {{ attemptsLeft }}</h4>
+        <h4 *ngIf="!gameEnded">Aciertos: {{ score }}</h4>
+
+      <!-- Mensaje de fin de juego -->
+      <div class="modal" *ngIf="gameEnded">
+        <div class="modal-content">
+            <h4 *ngIf="attemptsLeft <= 0">Se han agotado tus intentos.</h4>
+            <h4 *ngIf="attemptsLeft <= 0">Puntaje final: {{ score }}</h4>
+            <h4 *ngIf="attemptsLeft > 0">Acertaste los 151 pokemons. Muy bien! </h4>
+            <h4 *ngIf="attemptsLeft > 0">Te quedaron {{attemptsLeft}} intentos</h4>
+            <button (click)="resetGame()" class="modal-button">Jugar de nuevo</button>
+            <button (click)="volverAlInicio()" class="modal-button">Volver al inicio</button>
+        </div>
+
+        </div>
+      </div>
+
+
+ </div>
+  

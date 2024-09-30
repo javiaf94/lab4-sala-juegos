@@ -6,13 +6,18 @@ import { MayormenorComponent } from './components/mayormenor/mayormenor.componen
 const routes: Routes = [
   {
     path : 'ahorcado',
-    component: AhorcadoComponent
-    //loadComponent: () => import('./components/ahorcado/ahorcado.component').then(c => c.AhorcadoComponent)
+    loadComponent: () => import('./components/ahorcado/ahorcado.component').then(c => c.AhorcadoComponent)
   },
   {
     path: 'mayormenor',
-    component: MayormenorComponent
-  }
+    loadComponent: () => import('./components/mayormenor/mayormenor.component').then(c => c.MayormenorComponent)
+  },
+  { path: 'preguntados',
+  loadComponent: () => import('./components/preguntados/preguntados.component').then(c => c.PreguntadosComponent)
+},
+{ path: 'sudoku',
+  loadComponent: () => import('./components/simon/simon.component').then(c => c.SimonComponent)
+}
 ];
 
 @NgModule({

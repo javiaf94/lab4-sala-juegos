@@ -1,0 +1,30 @@
+<div class="wrapper">
+    <div class="game-container">
+        <h2>Simon</h2>
+        <div class="simon-container">
+            <div class="simon-board">
+                <div class="color-container red-container">
+                    <div class="color red" (click)="playerClick('red')" [class.active]="activeColor === 'red'"></div>
+                </div>
+                <div class="color-container green-container">
+                    <div class="color green" (click)="playerClick('green')" [class.active]="activeColor === 'green'"></div>
+                </div>
+                <div class="color-container blue-container">
+                    <div class="color blue" (click)="playerClick('blue')" [class.active]="activeColor === 'blue'"></div>
+                </div>
+                <div class="color-container yellow-container">
+                    <div class="color yellow" (click)="playerClick('yellow')" [class.active]="activeColor === 'yellow'"></div>
+                </div>
+            </div>
+            <button class="start-btn" (click)="startGame()" *ngIf="!gameStarted">Comenzar juego</button>
+        </div>
+        <div class="modal" *ngIf="gameOver">
+            <div class="modal-content">
+                <h4>Oops, te equivocaste!</h4>
+                <h4>Tu cantidad de aciertos fue: {{ currentStep }}</h4>
+                <button *ngIf="gameOver" (click)="startGame()" class="modal-button">Jugar de nuevo</button>
+                <button (click)="volverAlInicio()" class="modal-button">Volver al inicio</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,8 +8,7 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Añade una sombra opcional para profundidad */
     overflow: auto; /* Permite el desplazamiento si el contenido excede el contenedor */
   }
-  
-  
+
   h4{
     font-size: 20px;
     color: #333;
@@ -17,20 +16,9 @@
   
   h2 {
     color: #4CAF50; /* Color del título */
-  }
-  
-  .buttons {
-    margin: 20px;
-  }
+}
 
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 0 10px;
-    cursor: pointer;
-  }
-
-  .wrapper {
+.wrapper {
     background-image: url('../../../../../../public/fondo4.jpg');
     height: 90vh; /* Ocupa toda la altura de la ventana */
     display: flex; /* Utiliza flexbox para centrar el contenido */
@@ -49,7 +37,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Asegura que esté encima de todo */
-}
+}  
 
 .modal-content {
     background-color: white;
@@ -60,6 +48,11 @@
 
 .modal-button {
     margin: 10px;
+}
+
+.imagen-agrandada {
+    width: 350px;
+    height: 350px;
 }
 
 .buttons {

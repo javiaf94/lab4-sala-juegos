@@ -16,8 +16,19 @@
       </div>
     </div>
 
-    <div class="placeholder" (click)="isLoggedIn ? rutear('/juegos/preguntados') : null">Preguntados</div>
-    <div class="placeholder" (click)="isLoggedIn ? rutear('/juegos/juego4') : null">Juego 4</div>
+    <div class="placeholder-3" (click)="isLoggedIn ? rutear('/juegos/preguntados') : null">
+      <div class="description">
+        <h2>Preguntados</h2>
+        <p>Poné a prueba tu conocimiento sobre Pokemon y adivina los nombres de todos!</p>
+      </div>
+    </div>
+
+    <div class="placeholder-4" (click)="isLoggedIn ? rutear('/juegos/sudoku') : null">
+      <div class="description">
+        <h2>Simon</h2>
+        <p>Poné a prueba tu memoria e intenta conseguir el mejor puntaje! </p>
+      </div>
+    </div>
 
   </div>
 

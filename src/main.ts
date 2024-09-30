@@ -7,7 +7,5 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 
 
 
-
-
 bootstrapApplication(AppComponent, appConfig,)
   .catch((err) => console.error(err));

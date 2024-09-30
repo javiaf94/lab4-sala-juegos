@@ -70,6 +70,40 @@
     cursor: pointer; /* Deja espacio para la imagen de fondo */
 }
 
+.placeholder-3 {
+    display: flex;
+    justify-content: flex-end; /* Centra el contenido del texto en el espacio libre */
+    align-items: center;
+    background-color: #f0eded;
+    height: 100%;
+    min-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-image: url('../../../../public/poke.jpg');
+    background-size: 40% 100%; /* Imagen ocupa el 40% del ancho */
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 45%;
+    cursor: pointer; /* Deja espacio para la imagen de fondo */
+}
+
+.placeholder-4 {
+    display: flex;
+    justify-content: flex-end; /* Centra el contenido del texto en el espacio libre */
+    align-items: center;
+    background-color: #f0eded;
+    height: 100%;
+    min-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-image: url('../../../../public/simon.png');
+    background-size: 40% 100%; /* Imagen ocupa el 40% del ancho */
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 45%;
+    cursor: pointer; /* Deja espacio para la imagen de fondo */
+}
+
 .modal {
     position: fixed;
     top: 0;
