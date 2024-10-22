@@ -1,0 +1,62 @@
+.score-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    min-width: 90%;
+  }
+  
+  .score-section {
+    background-color: #f4f4f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 90%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+
+  }
+  
+  .subtitle {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+  }
+  
+  .score-list {
+    list-style-type: none;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+  }
+  
+  .score-list li {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-size: 1.1em;
+    color: #666;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+  }
+  
+
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea los juegos al principio del contenedor */
+    height: 85vh;
+    margin: 0;
+    background-color: #f4f4f9;
+    padding: 20px; /* Un pequeño padding para evitar que queden pegados al borde */
+    background-image: url('../../../../public/fondo4.jpg');
+
+}

@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { AuthService } from '../../../../services/auth.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-mayormenor',
@@ -17,12 +20,26 @@ export class MayormenorComponent {
   attemptsLeft: number = 5;
   gameEnded: boolean = false;
 
+  userEmail!: string;
+
+
   suits = ['oro', 'espada', 'basto', 'copa'];
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private firestore: Firestore, private auth: AuthService) {
     this.resetGame();
   }
 
+  ngOnInit()
+  {
+    this.auth.isLoggedIn().pipe(
+      map(user => ({
+        loggedIn: !!user, // Convert user object to boolean (true/false)
+        email: user ? user.email : null // Retrieve user email if logged in
+      }))
+    ).subscribe(({ email }) => {
+      this.userEmail = email; // Update userEmail attribute
+    }); 
+  }
   // Inicializa un mazo de 52 cartas (1-12 de cada palo de la baraja española)
   resetGame(): void {
     this.deck = this.generateDeck();
@@ -75,6 +92,7 @@ export class MayormenorComponent {
     this.currentCard = this.nextCard;
 
     if (this.attemptsLeft <= 0 || this.deck.length === 0) {
+      this.guardarPuntaje();
       this.gameEnded = true;
     }
   }
@@ -82,4 +100,9 @@ export class MayormenorComponent {
   volverAlInicio() {
     this.router.navigate(["/home"]);
   }
+
+  guardarPuntaje() {
+    let col = collection(this.firestore, 'puntajes');
+    addDoc(col, { usuario: this.userEmail, puntaje: this.score, fecha: new Date(), juego:"mayormenor"})
+}
 }

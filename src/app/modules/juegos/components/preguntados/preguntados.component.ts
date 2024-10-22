@@ -4,6 +4,9 @@ import { Injectable, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { AuthService } from '../../../../services/auth.service';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -23,14 +26,24 @@ export class PreguntadosComponent {
   attemptsLeft: number = 3;  // Intentos disponibles
   score: number = 0;  // Puntuación de aciertos
   gameEnded: boolean = false;  // Indica si el juego ha terminado
+  userEmail!: string;
 
-  constructor(private preguntadosService: PreguntadosService, private router: Router) {}
+  constructor(private preguntadosService: PreguntadosService, private router: Router,  private firestore: Firestore, private auth: AuthService) {}
 
   ngOnInit() {
     this.preguntadosService.loadPokemones().subscribe(pokemones => {
       this.pokemones = pokemones;
       this.showRandomPokemon();
     });
+
+    this.auth.isLoggedIn().pipe(
+      map(user => ({
+        loggedIn: !!user, // Convert user object to boolean (true/false)
+        email: user ? user.email : null // Retrieve user email if logged in
+      }))
+    ).subscribe(({ email }) => {
+      this.userEmail = email; // Update userEmail attribute
+    }); 
   }
 
   showRandomPokemon() {
@@ -83,6 +96,7 @@ export class PreguntadosComponent {
       this.showRandomPokemon();  // Mostrar nuevo Pokémon
     } else {
       this.gameEnded = true;  // Terminar el juego si se acabaron los intentos
+      this.guardarPuntaje();
     }
   }
 
@@ -98,4 +112,8 @@ export class PreguntadosComponent {
     this.router.navigate(["/home"]);
   }
 
+  guardarPuntaje() {
+    let col = collection(this.firestore, 'puntajes');
+    addDoc(col, { usuario: this.userEmail, puntaje: this.score, fecha: new Date(), juego:"preguntados"})
+}
 }

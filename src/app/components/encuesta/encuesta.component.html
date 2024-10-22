@@ -1,0 +1,107 @@
+<div class="wrapper">
+    <div class="encuesta-container">
+      <h2>Encuesta</h2>
+  
+      <!-- Formulario de la encuesta -->
+      <form class="encuesta-form" [formGroup]="encuestaForm" (ngSubmit)="enviarEncuesta($event)">
+        
+        <!-- Nombre y Apellido -->
+        <div class="form-group">
+          <label for="nombre">Nombre y Apellido</label>
+          <input type="text" id="nombre" class="form-control" placeholder="Ingrese su nombre y apellido" formControlName="nombre" />
+          <div *ngIf="encuestaForm.get('nombre')?.invalid && (encuestaForm.get('nombre')?.touched || encuestaForm.get('nombre')?.dirty)">
+            <small class="text-danger">Este campo es obligatorio.</small>
+          </div>
+        </div>
+        
+        <!-- Edad -->
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="number" id="edad" class="form-control" placeholder="Ingrese su edad" formControlName="edad" />
+          <div *ngIf="encuestaForm.get('edad')?.invalid && (encuestaForm.get('edad')?.touched || encuestaForm.get('edad')?.dirty)">
+            <small class="text-danger" *ngIf="encuestaForm.get('edad')?.errors?.['required']">Este campo es obligatorio.</small>
+            <small class="text-danger" *ngIf="encuestaForm.get('edad')?.errors?.['min'] || encuestaForm.get('edad')?.errors?.['max']">
+              Debe ser mayor de 18 años y menor de 99 años.
+            </small>
+          </div>
+        </div>
+        
+        <!-- Teléfono -->
+        <div class="form-group">
+          <label for="telefono">Número de Teléfono</label>
+          <input type="tel" id="telefono" class="form-control" placeholder="Ingrese su número de teléfono" formControlName="telefono" />
+          <div *ngIf="encuestaForm.get('telefono')?.invalid && (encuestaForm.get('telefono')?.touched || encuestaForm.get('telefono')?.dirty)">
+            <small class="text-danger" *ngIf="encuestaForm.get('telefono')?.errors?.['required']">Este campo es obligatorio.</small>
+            <small class="text-danger" *ngIf="encuestaForm.get('telefono')?.errors?.['pattern']">Debe contener solo números.</small>
+            <small class="text-danger" *ngIf="encuestaForm.get('telefono')?.errors?.['maxlength']">No puede tener más de 10 caracteres.</small>
+          </div>
+        </div>
+        
+        <!-- Pregunta 1 - Checkbox -->
+        <div class="form-group">
+            <label>¿Qué características busca al momento de elegir un juego?</label>
+            <div class="checkbox-group">
+              <label>
+                <input type="checkbox" value="Memoria" (change)="onCheckboxChange('Memoria')" /> Memoria
+              </label>
+              <label>
+                <input type="checkbox" value="Habilidad" (change)="onCheckboxChange('Habilidad')" /> Habilidad
+              </label>
+              <label>
+                <input type="checkbox" value="Conocimiento general" (change)="onCheckboxChange('Conocimiento general')" /> Conocimiento general
+              </label>
+              <label>
+                <input type="checkbox" value="Azar" (change)="onCheckboxChange('Azar')" /> Azar
+              </label>
+              <label>
+                <input type="checkbox" value="Ninguna de las anteriores" (change)="onCheckboxChange('Ninguna de las anteriores')" /> Ninguna de las anteriores
+              </label>
+            </div>
+            <!-- Mensaje de error para el checkbox -->
+            <div *ngIf="encuestaForm.get('caracteristicas')?.invalid">
+              <small class="text-danger">Debe seleccionar al menos una opción.</small>
+            </div>
+          </div>
+        
+        <!-- Pregunta 2 - Radio button -->
+        <div class="form-group">
+            <label>¿Cuál es el juego que más le gustó?</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="juego" value="Ahorcado" (change)="onRadioChange('Ahorcado')" /> Ahorcado
+              </label>
+              <label>
+                <input type="radio" name="juego" value="Mayor o menor" (change)="onRadioChange('Mayor o menor')" /> Mayor o menor
+              </label>
+              <label>
+                <input type="radio" name="juego" value="Preguntados" (change)="onRadioChange('Preguntados')" /> Preguntados
+              </label>
+              <label>
+                <input type="radio" name="juego" value="Simon" (change)="onRadioChange('Simon')" /> Simon
+              </label>
+            </div>
+            <!-- Mensaje de error para el radio button -->
+            <div *ngIf="encuestaForm.get('juego')?.invalid">
+              <small class="text-danger">Debe seleccionar una opción.</small>
+            </div>
+          </div>
+        
+        <!-- Pregunta 3 - Textbox -->
+        <div class="form-group">
+          <label for="pregunta1">¿Qué aspectos de nuestros juegos le gustaron o le gustaría cambiar?</label>
+          <textarea id="pregunta1" class="form-control" rows="3" placeholder="Escribe tu opinión" formControlName="comentario"></textarea>
+          <div *ngIf="encuestaForm.get('comentario')?.invalid && (encuestaForm.get('comentario')?.touched || encuestaForm.get('comentario')?.dirty)">
+            <small class="text-danger" *ngIf="encuestaForm.get('comentario')?.errors?.['required']">Este campo es obligatorio.</small>
+            <small class="text-danger" *ngIf="encuestaForm.get('comentario')?.errors?.['minlength']">Debe tener al menos 15 caracteres.</small>
+          </div>
+        </div>
+  
+        <!-- Botón para enviar -->
+        <div class="form-group">
+          <button type="submit" class="submit-btn">Enviar</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  

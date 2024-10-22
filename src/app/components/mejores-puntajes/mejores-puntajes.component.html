@@ -1,0 +1,10 @@
+<div class ="wrapper">
+<div class="score-container">
+    <div class="score-section" *ngFor="let score of scores | keyvalue">
+        <div class="subtitle">{{ score.key == 'mayormenor'?  'Mayor o Menor': score.key == 'preguntados' ? 'Preguntados' : score.key == 'simon' ? 'Simon' : score.key == 'ahorcado' ? 'Ahorcado' : score.key}}</div>
+        <ul class="score-list">
+            <li *ngFor="let item of score.value">Puntaje:{{ item.puntaje }}  -  {{item.user}}  </li>
+        </ul>
+    </div>
+</div>
+</div>

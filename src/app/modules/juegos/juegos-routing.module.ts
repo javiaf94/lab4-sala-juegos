@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'preguntados',
   loadComponent: () => import('./components/preguntados/preguntados.component').then(c => c.PreguntadosComponent)
 },
-{ path: 'sudoku',
+{ path: 'simon',
   loadComponent: () => import('./components/simon/simon.component').then(c => c.SimonComponent)
 }
 ];

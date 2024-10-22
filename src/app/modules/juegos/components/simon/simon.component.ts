@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { AuthService } from '../../../../services/auth.service';
+import { map } from 'rxjs';
+
 
 @Component({
   selector: 'app-simon',
@@ -19,9 +23,22 @@ export class SimonComponent {
   currentStep = 0;
   playerCanClick = false;
 
-  
+  userEmail!: string;
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router, private firestore: Firestore, private auth: AuthService) { }
+
+  ngOnInit()
+  {
+    this.auth.isLoggedIn().pipe(
+      map(user => ({
+        loggedIn: !!user, // Convert user object to boolean (true/false)
+        email: user ? user.email : null // Retrieve user email if logged in
+      }))
+    ).subscribe(({ email }) => {
+      this.userEmail = email; // Update userEmail attribute
+    }); 
+  }
 
   startGame() {
     this.gameStarted = true;
@@ -75,6 +92,7 @@ playerClick(color: string) {
     if (this.sequence[this.currentStep] !== color) {
       this.gameOver = true;
       this.playerCanClick = false; // Bloquear clics una vez que se pierda
+      this.guardarPuntaje();
       return;
     }
 
@@ -90,4 +108,10 @@ playerClick(color: string) {
   volverAlInicio() {
     this.router.navigate(["/home"]);
   }
+
+  guardarPuntaje() {
+    let col = collection(this.firestore, 'puntajes');
+    addDoc(col, { usuario: this.userEmail, puntaje: this.currentStep, fecha: new Date(), juego:"simon"})
+}
+
 }

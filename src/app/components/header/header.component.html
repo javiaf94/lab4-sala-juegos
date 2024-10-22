@@ -4,6 +4,8 @@
         <li><img class="icon-photo" src="icon.png" alt="Icono"></li>
         <li><a routerLink="home" routerLinkActive="active-route">Inicio</a></li>
         <li><a routerLink="/quien-soy" routerLinkActive="active-route">Quién soy</a></li>
+        <li><a routerLink="/mejores-puntajes" routerLinkActive="active-route" *ngIf="isLoggedIn">Mejores Puntajes</a></li>
+        <li><a routerLink="/encuesta" routerLinkActive="active-route" *ngIf="isLoggedIn">Encuesta</a></li>
         <li><a routerLink="/login" routerLinkActive="active-route" *ngIf="!isLoggedIn">Iniciar sesión / Registrarse</a></li>
         <li><a *ngIf="isLoggedIn">Bienvenido {{ userEmail }}</a></li> 
         <li><a (click)="logout()" routerLink="/login" routerLinkActive="active-route" *ngIf="isLoggedIn">Cerrar Sesión</a></li>

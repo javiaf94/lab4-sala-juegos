@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { AuthService } from '../../../../services/auth.service';
+import { map } from 'rxjs';
+
 
 @Component({
   selector: 'app-ahorcado',
@@ -17,7 +21,10 @@ export class AhorcadoComponent {
   letrasSeleccionadas: string[] = [];
   intentos: number = 6;
 
-  constructor(private router: Router)
+  userEmail!: string;
+  puntajeGuardado: boolean = false;
+
+  constructor(private router: Router, private firestore: Firestore, private auth: AuthService)
   {
 
   }
@@ -25,6 +32,14 @@ export class AhorcadoComponent {
   ngOnInit() {
     const indiceAleatorio: number = Math.floor(Math.random() * this.palabras.length);
     this.palabra = this.palabras[indiceAleatorio];
+    this.auth.isLoggedIn().pipe(
+      map(user => ({
+        loggedIn: !!user, // Convert user object to boolean (true/false)
+        email: user ? user.email : null // Retrieve user email if logged in
+      }))
+    ).subscribe(({ email }) => {
+      this.userEmail = email; // Update userEmail attribute
+    });
   }
 
   get letras() {
@@ -63,7 +78,22 @@ export class AhorcadoComponent {
   // }
   
     isJuegoTerminado() {
-      return this.intentos <= 0 || this.palabra.split('').every(letter => this.letrasSeleccionadas.includes(letter));
+      if (this.intentos <= 0) {
+        return true;
+      }
+      const todasLetrasSeleccionadas = this.palabra.split('').every(letter => this.letrasSeleccionadas.includes(letter));
+      
+      if (todasLetrasSeleccionadas) {
+        if(!this.puntajeGuardado)
+        {
+          console.log("guardando puntaje");
+          this.guardarPuntaje();  // Llamar a la función si todas las letras han sido seleccionadas
+          console.log("puntaje guardado");
+          this.puntajeGuardado = true;
+        }
+        return true;
+      }
+      return false;
     }
   
     isPalabraCompletada(): boolean {
@@ -74,6 +104,8 @@ export class AhorcadoComponent {
       this.intentos = 6;
       this.letrasSeleccionadas = [];
       this.palabra = this.palabras[Math.floor(Math.random() * this.palabras.length)];
+      this.puntajeGuardado = false;
+
   }
 
   volverAJugar() {
@@ -83,4 +115,9 @@ export class AhorcadoComponent {
   volverAlInicio() {
     this.router.navigate(["/home"]);
   }
+
+  guardarPuntaje() {
+    let col = collection(this.firestore, 'puntajes');
+    addDoc(col, { usuario: this.userEmail, puntaje: this.intentos, fecha: new Date(), juego:"ahorcado"})
+}
   }
